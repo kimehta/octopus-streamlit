@@ -18,24 +18,14 @@ st.set_page_config(
      }
 )
 
-#"""Work with the data scientists and data analysts to scope out and plan new data sources and pipelines
-#Build, automate, deploy and maintain data pipelines
-#Build Streamlet data apps and lend a hand building and maintaining Tableau dashboards
-#Work with the global data platform team to deploy new tools and services into the US data environment
-#Participate in and contribute to our global data community
-#Build the infrastructure required for optimal extraction, transformation, and loading of data from a wide variety of data sources
-#Use an analytical, data-driven approach to drive a deep understanding of fast changing business
-#Build large-scale batch and real-time data pipelines with data processing frameworks in Amazon Web Services, Azure or GCP cloud platform
-#"""
-
 #st.markdown("[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)")
 
-b1,b2,b3 = navbar.header()
+b0,b1,b2,b3 = navbar.header()
 
 if b1: a_p()
-if b2: b_p()
-if b3: c_p()
-
+elif b2: b_p()
+elif b3: c_p()
+else: h_p()
 
 #import geopandas as gpd
 #shapefile = gpd.read_file("C:\Users\chicken\Downloads\PowerPlants_US_EIA\PowerPlants_US_202004.shp")

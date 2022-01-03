@@ -7,7 +7,7 @@ def header():
     with col0:
         hh="""
         <style>
-        div.e1tzin5v2:nth-child(1) > div > div.e1tzin5v1 > div.stButton > button {
+        div.e1tzin5v2:nth-child(1) > div > div > div > div.stButton > button {
             font-size: 20px;
             background: url(https://openclipart.org/image/400px/323162) no-repeat;
             border-radius: 16px;
@@ -22,7 +22,7 @@ def header():
     with col1:
         hh="""
         <style>
-        div.e1tzin5v2:nth-child(2) > div > div.e1tzin5v1 > div.stButton > button {
+        div.e1tzin5v2:nth-child(2) > div > div > div > div.stButton > button {
             padding: 10px 10px;
             font-family: "Trebuchet MS", Arial, Verdana;  
             font-size: 20px;
@@ -39,7 +39,7 @@ def header():
     with col2: 
         hh="""
         <style>
-        div.e1tzin5v2:nth-child(3) > div > div.e1tzin5v1 > div.stButton > button {
+        div.e1tzin5v2:nth-child(3) > div > div > div > div.stButton > button {
             font-family: "Trebuchet MS", Arial, Verdana;  
             font-size: 20px;
             background: url(https://github.com/kimehta/octopus-streamlit/blob/main/3dgifmaker40906.gif?raw=true) no-repeat;
@@ -55,7 +55,7 @@ def header():
     with col3: 
         hh="""
         <style>
-        div.e1tzin5v2:nth-child(4) > div > div.e1tzin5v1 > div.stButton > button {
+        div.e1tzin5v2:nth-child(4) > div > div > div  > div.stButton > button {
             font-size: 20px;
             background: url(https://miro.medium.com/max/1000/0*PpJM0VvDNpTERGdT.gif) no-repeat;
             border-radius: 16px;

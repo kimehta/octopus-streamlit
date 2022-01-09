@@ -1,5 +1,4 @@
 ﻿import streamlit as st
-import st_state_patch
 import streamlit.components.v1 as components
 from rtm import rtm_deck
 

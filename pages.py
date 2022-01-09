@@ -1,7 +1,9 @@
 ﻿import streamlit as st
+import st_state_patch
 import streamlit.components.v1 as components
+from rtm import rtm_deck
 
-def h_p():
+def p1():
     st.write("""
         Hey There!
         I'm Kevin Mehta and Thanks for visiting my streamlit.
@@ -17,9 +19,9 @@ def h_p():
         It's got the social aspect of serving people, economic aspect of markets, & all the enginnering!
 
         Kevin.Mehta@outlook.com
-    """)
+    """)    
 
-def a_p():
+def p2():
     st.write("These are the many technologies I have worked with in my journey, some extensively others lightly.")
     st.write("Feel free to ask me about my experience with any specific ones.")
 
@@ -154,18 +156,24 @@ def a_p():
             with columns[i]:
                 st.image(images[list(images.keys())[i]], width=100)
                 st.write(list(images.keys())[i])
-        
 
-@st.cache
-def cached_image(url):
-    pass
-
-def b_p():
+def p3():
     st.info("Please bear with the slow loadings, I am paying for hosting fees out of pocket and hence certain pipelines only boot up on demand for this demo.")
     st.info("If some pipeline is down, It's probably to reduce cost but I'd be happy to boot it live for a demo in an interview.")
 
-    with st.expander("Real-Time Locational Prices Embedded from ERCOT"):
-        components.iframe("https://www.ercot.com/content/cdr/contours/rtmLmpHg.html", height =800, width=750)
+    with st.expander("Real-Time Locational Prices from ERCOT"):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("Embedded iframe straight from ERCOT")
+            components.iframe("https://www.ercot.com/content/cdr/contours/rtmLmpHg.html", height =800, width=750)
+        
+        with col2:
+            st.write("Pull data from ERCOT API and visualize using pydeck")
+            option = st.radio("Select Data", ["LMP","SPP"], index = int(bool(st.session_state.b3_e1_c2)), key="b3_e1_c2")
+
+            deck, datestamp = rtm_deck(option)
+            st.write(datestamp)
+            st.pydeck_chart(deck)
 
     with st.expander("real-time order flow forecasting AWS pipeline"):
         st.write("feed live nasdaq trades data, forecast future trades per second from historical")
@@ -215,7 +223,7 @@ def b_p():
                 st.image(images[list(images.keys())[i]], width=100)
                 st.write(list(images.keys())[i])
 
-def c_p():
+def p4():
     st.write("Some dubious observations regarding electricity")
 
     with st.expander("It is cheaper to produce electricity than to transmit it"):

@@ -7,9 +7,7 @@ def p1():
         Hey There!
         I'm Kevin Mehta and Thanks for visiting my streamlit.
         
-        I came across the job listing and am really interested because it complements my work experience and interests.
-
-        Please checkout the sections above and I'd be happy to talk about them in further detail.
+        I am currently seeking an entry Software Engineering/Data Engineering position. Please checkout the sections above and I'd be happy to talk about them in further detail.
 
         On a professional note, I interned at Fidelity Investments, where I built full-stack real-time data science pipelines using ELK.
         At octopus, I wish to leverage these skills to help you build more resilient, affordable, & green power grids that are quick reactive to unexpected changes in capacity & proactivly accomodating for foreseable demands through ML forecasting.

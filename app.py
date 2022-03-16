@@ -1,4 +1,4 @@
-﻿import navbar
+import navbar
 from pages import *
 import streamlit as st
 #import st_state_patch
@@ -19,8 +19,12 @@ b1,b2,b3,b4 = navbar.header()
 
 if 'b3_e1_c2' not in st.session_state or b1 or b2 or b4: 
     st.session_state.b3_e1_c2 = False
+    
+if 's1' not in st.session_state or b1 or b2 or b4: 
+    st.session_state.s1 = False
 
 if b1: p1()
-if b2: p2()
-elif b3 or st.session_state.b3_e1_c2: p3()
+elif b2: p2()
+elif b3 or st.session_state.b3_e1_c2 or st.session_state.s1: p3()
 elif b4: p4()
+else: p1()

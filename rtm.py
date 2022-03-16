@@ -36,7 +36,7 @@ def get_df(source):
     lon_scale = 0.023015
     lat_scale = 0.01875
     
-    points = pd.DataFrame()
+    points = []
     for area in parser.map:
         coords = area[1]
         x,y,z = [int(co) for co in area[1][1].split(',')]
@@ -44,8 +44,9 @@ def get_df(source):
 
         price = price.split('$')[1]
         
-        points = points.append({'lon':lon0+(lon_scale*x), 'lat':lat0-(lat_scale*y), 'name':spp, 'price':price},ignore_index=True)
-
+        points.append({'lon':lon0+(lon_scale*x), 'lat':lat0-(lat_scale*y), 'name':spp, 'price':price})
+    points = pd.DataFrame(points)
+    
     return points, parser.datestamp
 
 def rtm_deck(source):

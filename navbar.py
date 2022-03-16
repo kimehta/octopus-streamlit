@@ -4,16 +4,18 @@ def header():
     
     col1, col2, col3, col4 = st.columns((1,3,3,3))
     #https://openclipart.org/image/400px/323162
+    
     with col1:
         hh="""
         <style>
         div.e1tzin5v2:nth-child(1) > div > div > div > div.stButton > button {
             font-size: 20px;
-            background: url(https://openclipart.org/image/400px/323162) no-repeat;
+            background: url(https://media.gettyimages.com/videos/neon-light-home-icon-animation-on-black-background-video-id1182862006?s=640x640) no-repeat;
             border-radius: 16px;
-            background-size: 100px;
+            background-size: cover;
             height: 5em;
             width: 100%;
+            color: rgb(255,255,255);
         }
         </style>"""
         st.markdown(hh, unsafe_allow_html=True)
@@ -31,6 +33,7 @@ def header():
             background-size: cover;
             height: 5em;
             width: 100%;
+            color: rgb(255,255,255);
         }
         </style>"""
         st.markdown(hh, unsafe_allow_html=True)
@@ -47,6 +50,7 @@ def header():
             background-size: cover;
             height: 5em;
             width: 100%;
+            color: rgb(255,255,255);
         }
         </style>"""
         st.markdown(hh, unsafe_allow_html=True)
@@ -62,6 +66,7 @@ def header():
             background-size: cover;
             height: 5em;
             width: 100%;
+            color: rgb(255,255,255);
         }
         </style>"""
         st.markdown(hh, unsafe_allow_html=True)

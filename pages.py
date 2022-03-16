@@ -1,8 +1,14 @@
-﻿import streamlit as st
+import streamlit as st
 import streamlit.components.v1 as components
 from rtm import rtm_deck
+from wafer import get_circle_defects
+from wafer import get_model
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import numpy as np
 
 def p1():
+    st.write(st.session_state)
     st.write("""
         Hey There!
         I'm Kevin Mehta and Thanks for visiting my streamlit.
@@ -19,6 +25,7 @@ def p1():
     """)    
 
 def p2():
+    st.write(st.session_state)
     st.write("These are the many technologies I have worked with in my journey, some extensively others lightly.")
     st.write("Feel free to ask me about my experience with any specific ones.")
 
@@ -155,10 +162,12 @@ def p2():
                 st.write(list(images.keys())[i])
 
 def p3():
+    st.write(st.session_state)
     st.info("Please bear with the slow loadings, I am paying for hosting fees out of pocket and hence certain pipelines only boot up on demand for this demo.")
     st.info("If some pipeline is down, It's probably to reduce cost but I'd be happy to boot it live for a demo in an interview.")
 
     with st.expander("Real-Time Locational Prices from ERCOT"):
+       
         col1, col2 = st.columns(2)
         with col1:
             st.write("Embedded iframe straight from ERCOT")
@@ -166,11 +175,12 @@ def p3():
         
         with col2:
             st.write("Pull data from ERCOT API and visualize using pydeck")
-            option = st.radio("Select Data", ["LMP","SPP"], index = int(bool(st.session_state.b3_e1_c2)), key="b3_e1_c2")
-
-            deck, datestamp = rtm_deck(option)
-            st.write(datestamp)
-            st.pydeck_chart(deck)
+            option = st.radio("Select Data", ["LMP","SPP"], key="b3_e1_c2")
+            
+            if st.session_state.b3_e1_c2:
+                deck, datestamp = rtm_deck(option)
+                st.write(datestamp)
+                st.pydeck_chart(deck)
 
     with st.expander("real-time order flow forecasting AWS pipeline"):
         st.write("feed live nasdaq trades data, forecast future trades per second from historical")
@@ -201,6 +211,40 @@ def p3():
             with columns[i]:
                 st.image(images[list(images.keys())[i]], width=100)
                 st.write(list(images.keys())[i])
+                
+    with st.expander("Wafer Map Defect Pattern Classification Using Convolutional Neural Network"):
+        st.write("Demo of https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8263132")
+        st.write("although I have only added 5 classes, I am using the same CNN. So I can easily extend it to all 22 defect patterns. It's just a matter of generating more synthetic data.")
+        st.write('https://youtu.be/vIci3C4JkL0?t=127')
+        option = st.selectbox(
+             'Generate Wafer Defect Type',
+             ('Random', 'Ring Edge', 'Left Edge',  'Right Edge',  'Line'), key="s1")
+
+        if st.session_state.s1:
+            columns = st.columns(3)
+            with columns[0]:
+                st.write("synthetic wafer defect density map")
+                wafer = get_circle_defects(option)
+
+                fig, ax = plt.subplots()
+                ax.imshow(wafer, cmap="Oranges", norm=mcolors.TwoSlopeNorm(.03)) 
+                ax.axis('off')
+                # fig.set_size_inches(2,2)
+                st.pyplot(fig)
+            with columns[1]:
+                st.write("CNN")
+                st.image('https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/66/8352598/8263132/nakaz.t1-2795466-small.gif')
+
+            with columns[2]:
+                st.write("Defect Type")
+                model = get_model()
+                labels = model.predict(np.around(np.dstack([wafer*255]*3)).reshape(1,100,100,3))[0]
+                labels = np.array(labels,float)
+                st.metric(label="Random", value='{} %'.format(round(labels[3]*100,2)))
+                st.metric(label="Ring Edge", value='{} %'.format(round(labels[0]*100,2)))
+                st.metric(label="Left Edge", value='{} %'.format(round(labels[1]*100,2)))
+                st.metric(label="Right Edge", value='{} %'.format(round(labels[4]*100,2)))
+                st.metric(label="Line", value='{} %'.format(round(labels[2]*100,2)))
 
     with st.expander("realtime infrastructure performance - IBM WATSON ML pipeline"):
 
@@ -221,6 +265,7 @@ def p3():
                 st.write(list(images.keys())[i])
 
 def p4():
+    st.write(st.session_state)
     st.write("Some dubious observations regarding electricity")
 
     with st.expander("It is cheaper to produce electricity than to transmit it"):

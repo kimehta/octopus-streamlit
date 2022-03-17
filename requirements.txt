@@ -4,3 +4,4 @@ pydeck
 matplotlib
 numpy
 keras
+opencv-python

@@ -4,6 +4,7 @@ import random
 import cv2
 import numpy
 import streamlit as st
+from keras.models import load_model
 
 def get_circle_defects(pattern:str, r:int=50):
     pattern = pattern.lower()
@@ -109,6 +110,4 @@ def get_circle_defects(pattern:str, r:int=50):
 
 @st.experimental_singleton
 def get_model():
-    print("BINGO")
-    from keras.models import load_model
     return load_model('wafer_model.h5')
